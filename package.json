@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
-    "start": "svelte-kit start"
+    "build": "svelte-kit build --verbose",
+    "start": "svelte-kit start -p 3000"
   },
   "devDependencies": {
     "@sveltejs/adapter-node": "next",
