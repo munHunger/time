@@ -48,11 +48,14 @@
 
   export let data;
   let chartData = {
-    labels: data.map(e => e.entry.map(entry => new Date(entry.start).getDate())).reduce((acc, val) => acc.concat(val), []),
+    labels: data
+      .map((e) => e.entry.map((entry) => new Date(entry.start).getDate()))
+      .reduce((acc, val) => acc.concat(val), []),
     datasets: data
       .map((e) => ({
         label: e.type + " time",
         borderColor: nord[(e.type.hashCode() % 4) + 7],
+        pointBorderColor: nord[14],
         backgroundColor: nord[1] + "30",
         data: e.entry.map((entry) => entry.time / 60),
         yAxisID: "axis-1",
@@ -61,7 +64,8 @@
         data.map((e) => ({
           label: e.type + " rating",
           borderColor: nord[(e.type.hashCode() % 4) + 7],
-          backgroundColor: nord[2] + "30",
+          pointBorderColor: nord[15],
+          backgroundColor: nord[3] + "30",
           data: e.entry.map((entry) => entry.rating),
           yAxisID: "axis-2",
         }))
@@ -69,6 +73,12 @@
   };
   let options = {
     stacked: false,
+    legend: {
+      labels: {
+        // This more specific font property overrides the global property
+        fontColor: nord[4],
+      },
+    },
     scales: {
       yAxes: [
         {
